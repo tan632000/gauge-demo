@@ -1,0 +1,564 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>LiveChartsCore.SkiaSharpView.WinForms</name>
+    </assembly>
+    <members>
+        <member name="T:LiveChartsCore.SkiaSharpView.WinForms.CartesianChart">
+            <inheritdoc cref="T:LiveChartsCore.Kernel.Sketches.ICartesianChartView" />
+        </member>
+        <member name="T:LiveChartsCore.SkiaSharpView.WinForms.GeoMap">
+            <inheritdoc cref="T:LiveChartsCore.Geo.IGeoMapView" />
+        </member>
+        <member name="F:LiveChartsCore.SkiaSharpView.WinForms.GeoMap.components">
+            <summary> 
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:LiveChartsCore.SkiaSharpView.WinForms.GeoMap.Dispose(System.Boolean)">
+            <summary> 
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:LiveChartsCore.SkiaSharpView.WinForms.GeoMap.InitializeComponent">
+            <summary> 
+            Required method for Designer support - do not modify 
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:LiveChartsCore.SkiaSharpView.WinForms.MotionCanvas">
+            <summary>
+            The motion canvas control for windows forms, <see cref="T:LiveChartsCore.Motion.CoreMotionCanvas"/>.
+            </summary>
+            <seealso cref="T:System.Windows.Forms.UserControl" />
+        </member>
+        <member name="M:LiveChartsCore.SkiaSharpView.WinForms.MotionCanvas.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:LiveChartsCore.SkiaSharpView.WinForms.MotionCanvas"/> class.
+            </summary>
+        </member>
+        <member name="P:LiveChartsCore.SkiaSharpView.WinForms.MotionCanvas.CanvasCore">
+            <inheritdoc cref="T:LiveChartsCore.Motion.CoreMotionCanvas"/>
+        </member>
+        <member name="M:LiveChartsCore.SkiaSharpView.WinForms.MotionCanvas.CreateHandle">
+            <inheritdoc cref="M:System.Windows.Forms.Control.CreateHandle"/>
+        </member>
+        <member name="M:LiveChartsCore.SkiaSharpView.WinForms.MotionCanvas.OnHandleDestroyed(System.EventArgs)">
+            <inheritdoc cref="M:System.Windows.Forms.Control.OnHandleDestroyed(System.EventArgs)"/>
+        </member>
+        <member name="F:LiveChartsCore.SkiaSharpView.WinForms.MotionCanvas.components">
+            <summary> 
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:LiveChartsCore.SkiaSharpView.WinForms.MotionCanvas.Dispose(System.Boolean)">
+            <summary> 
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:LiveChartsCore.SkiaSharpView.WinForms.MotionCanvas.InitializeComponent">
+            <summary> 
+            Required method for Designer support - do not modify 
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:LiveChartsCore.SkiaSharpView.WinForms.PieChart">
+            <inheritdoc cref="T:LiveChartsCore.Kernel.Sketches.IPieChartView" />
+        </member>
+        <member name="T:LiveChartsCore.SkiaSharpView.WinForms.PolarChart">
+            <inheritdoc cref="T:LiveChartsCore.Kernel.Sketches.IPolarChartView" />
+        </member>
+        <member name="T:LiveChartsGeneratedCode.SourceGenCartesianChart">
+            <inheritdoc cref="T:LiveChartsCore.Kernel.Sketches.ICartesianChartView" />
+            <inheritdoc cref="T:LiveChartsCore.Kernel.Sketches.ICartesianChartView" />
+        </member>
+        <member name="M:LiveChartsGeneratedCode.SourceGenCartesianChart.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:LiveChartsGeneratedCode.SourceGenCartesianChart"/> class.
+            </summary>
+        </member>
+        <member name="F:LiveChartsGeneratedCode.SourceGenCartesianChart.zoomMode">
+            <inheritdoc cref="P:LiveChartsCore.Kernel.Sketches.ICartesianChartView.ZoomMode"/>
+        </member>
+        <member name="F:LiveChartsGeneratedCode.SourceGenCartesianChart.zoomingSpeed">
+            <inheritdoc cref="P:LiveChartsCore.Kernel.Sketches.ICartesianChartView.ZoomingSpeed"/>
+        </member>
+        <member name="F:LiveChartsGeneratedCode.SourceGenCartesianChart.findingStrategy">
+            <inheritdoc cref="P:LiveChartsCore.Kernel.Sketches.ICartesianChartView.FindingStrategy"/>
+        </member>
+        <member name="F:LiveChartsGeneratedCode.SourceGenCartesianChart.xAxes">
+            <inheritdoc cref="P:LiveChartsCore.Kernel.Sketches.ICartesianChartView.XAxes"/>
+        </member>
+        <member name="F:LiveChartsGeneratedCode.SourceGenCartesianChart.yAxes">
+            <inheritdoc cref="P:LiveChartsCore.Kernel.Sketches.ICartesianChartView.YAxes"/>
+        </member>
+        <member name="F:LiveChartsGeneratedCode.SourceGenCartesianChart.sections">
+            <inheritdoc cref="P:LiveChartsCore.Kernel.Sketches.ICartesianChartView.Sections"/>
+        </member>
+        <member name="F:LiveChartsGeneratedCode.SourceGenCartesianChart.drawMarginFrame">
+            <inheritdoc cref="P:LiveChartsCore.Kernel.Sketches.ICartesianChartView.DrawMarginFrame"/>
+        </member>
+        <member name="P:LiveChartsGeneratedCode.SourceGenCartesianChart.TooltipFindingStrategy">
+            <inheritdoc cref="P:LiveChartsCore.Kernel.Sketches.ICartesianChartView.FindingStrategy" />
+        </member>
+        <member name="P:LiveChartsGeneratedCode.SourceGenCartesianChart.MatchAxesScreenDataRatio">
+            <inheritdoc cref="P:LiveChartsCore.Kernel.Sketches.ICartesianChartView.MatchAxesScreenDataRatio" />
+        </member>
+        <member name="M:LiveChartsGeneratedCode.SourceGenCartesianChart.ScalePixelsToData(LiveChartsCore.Drawing.LvcPointD,System.Int32,System.Int32)">
+            <inheritdoc cref="M:LiveChartsCore.Kernel.Sketches.ICartesianChartView.ScalePixelsToData(LiveChartsCore.Drawing.LvcPointD,System.Int32,System.Int32)"/>
+        </member>
+        <member name="M:LiveChartsGeneratedCode.SourceGenCartesianChart.ScaleDataToPixels(LiveChartsCore.Drawing.LvcPointD,System.Int32,System.Int32)">
+            <inheritdoc cref="M:LiveChartsCore.Kernel.Sketches.ICartesianChartView.ScaleDataToPixels(LiveChartsCore.Drawing.LvcPointD,System.Int32,System.Int32)"/>
+        </member>
+        <member name="M:LiveChartsGeneratedCode.SourceGenCartesianChart.CreateCoreChart">
+            <inheritdoc cref="M:LiveChartsGeneratedCode.SourceGenChart.CreateCoreChart"/>
+        </member>
+        <member name="M:LiveChartsGeneratedCode.SourceGenCartesianChart.ConfigureObserver(LiveChartsCore.Kernel.Observers.ChartObserver)">
+            <inheritdoc cref="M:LiveChartsGeneratedCode.SourceGenChart.ConfigureObserver(LiveChartsCore.Kernel.Observers.ChartObserver)"/>
+        </member>
+        <member name="M:LiveChartsGeneratedCode.SourceGenCartesianChart.InitializeObservedProperties">
+            <inheritdoc cref="M:LiveChartsGeneratedCode.SourceGenChart.InitializeObservedProperties"/>
+        </member>
+        <member name="P:LiveChartsGeneratedCode.SourceGenCartesianChart.ZoomMode">
+            <inheritdoc cref="P:LiveChartsCore.Kernel.Sketches.ICartesianChartView.ZoomMode"/>
+        </member>
+        <member name="P:LiveChartsGeneratedCode.SourceGenCartesianChart.ZoomingSpeed">
+            <inheritdoc cref="P:LiveChartsCore.Kernel.Sketches.ICartesianChartView.ZoomingSpeed"/>
+        </member>
+        <member name="P:LiveChartsGeneratedCode.SourceGenCartesianChart.FindingStrategy">
+            <inheritdoc cref="P:LiveChartsCore.Kernel.Sketches.ICartesianChartView.FindingStrategy"/>
+        </member>
+        <member name="P:LiveChartsGeneratedCode.SourceGenCartesianChart.XAxes">
+            <inheritdoc cref="P:LiveChartsCore.Kernel.Sketches.ICartesianChartView.XAxes"/>
+        </member>
+        <member name="P:LiveChartsGeneratedCode.SourceGenCartesianChart.YAxes">
+            <inheritdoc cref="P:LiveChartsCore.Kernel.Sketches.ICartesianChartView.YAxes"/>
+        </member>
+        <member name="P:LiveChartsGeneratedCode.SourceGenCartesianChart.Sections">
+            <inheritdoc cref="P:LiveChartsCore.Kernel.Sketches.ICartesianChartView.Sections"/>
+        </member>
+        <member name="P:LiveChartsGeneratedCode.SourceGenCartesianChart.DrawMarginFrame">
+            <inheritdoc cref="P:LiveChartsCore.Kernel.Sketches.ICartesianChartView.DrawMarginFrame"/>
+        </member>
+        <member name="T:LiveChartsGeneratedCode.SourceGenChart">
+            <inheritdoc cref="T:LiveChartsCore.Kernel.Sketches.IChartView" />
+            <inheritdoc cref="T:LiveChartsCore.Kernel.Sketches.IChartView" />
+        </member>
+        <member name="M:LiveChartsGeneratedCode.SourceGenChart.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:LiveChartsGeneratedCode.SourceGenChart"/> class.
+            </summary>
+        </member>
+        <member name="P:LiveChartsGeneratedCode.SourceGenChart.CoreCanvas">
+            <inheritdoc cref="P:LiveChartsCore.Kernel.Sketches.IDrawnView.CoreCanvas"/>"/>
+        </member>
+        <member name="M:LiveChartsGeneratedCode.SourceGenChart.GetDrawnControl">
+            <summary>
+            Gets the drawn control.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LiveChartsGeneratedCode.SourceGenChart.OnParentChanged(System.EventArgs)">
+            <inheritdoc cref="M:System.Windows.Forms.ContainerControl.OnParentChanged(System.EventArgs)"/>
+        </member>
+        <member name="M:LiveChartsGeneratedCode.SourceGenChart.OnHandleDestroyed(System.EventArgs)">
+            <summary>
+            Raises the <see cref="E:HandleDestroyed" /> event.
+            </summary>
+            <param name="e">The <see cref="T:System.EventArgs"/> instance containing the event data.</param>
+            <returns></returns>
+        </member>
+        <member name="F:LiveChartsGeneratedCode.SourceGenChart.updateStartedCommand">
+            <inheritdoc cref="E:LiveChartsCore.Kernel.Sketches.IChartView.UpdateStarted"/>
+        </member>
+        <member name="F:LiveChartsGeneratedCode.SourceGenChart.dataPointerDownCommand">
+            <inheritdoc cref="E:LiveChartsCore.Kernel.Sketches.IChartView.DataPointerDown"/>
+        </member>
+        <member name="F:LiveChartsGeneratedCode.SourceGenChart.hoveredPointsChangedCommand">
+            <inheritdoc cref="E:LiveChartsCore.Kernel.Sketches.IChartView.HoveredPointsChanged"/>
+        </member>
+        <member name="F:LiveChartsGeneratedCode.SourceGenChart.chartPointPointerDownCommand">
+            <inheritdoc cref="E:LiveChartsCore.Kernel.Sketches.IChartView.ChartPointPointerDown"/>
+        </member>
+        <member name="F:LiveChartsGeneratedCode.SourceGenChart.visualElementsPointerDownCommand">
+            <inheritdoc cref="E:LiveChartsCore.Kernel.Sketches.IChartView.VisualElementsPointerDown"/>
+        </member>
+        <member name="F:LiveChartsGeneratedCode.SourceGenChart.pointerPressedCommand">
+            <summary>
+            Ocurrs when the chart is pressed.
+            </summary>
+        </member>
+        <member name="F:LiveChartsGeneratedCode.SourceGenChart.pointerMoveCommand">
+            <summary>
+            Ocurrs when the pointer is moved over the chart.
+            </summary>
+        </member>
+        <member name="F:LiveChartsGeneratedCode.SourceGenChart.pointerReleasedCommand">
+            <summary>
+            Ocurrs when the pointer is released over the chart.
+            </summary>
+        </member>
+        <member name="F:LiveChartsGeneratedCode.SourceGenChart.animationsSpeed">
+            <inheritdoc cref="P:LiveChartsCore.Kernel.Sketches.IChartView.AnimationsSpeed"/>
+        </member>
+        <member name="F:LiveChartsGeneratedCode.SourceGenChart.easingFunction">
+            <inheritdoc cref="P:LiveChartsCore.Kernel.Sketches.IChartView.EasingFunction"/>
+        </member>
+        <member name="F:LiveChartsGeneratedCode.SourceGenChart.drawMargin">
+            <inheritdoc cref="P:LiveChartsCore.Kernel.Sketches.IChartView.DrawMargin"/>
+        </member>
+        <member name="F:LiveChartsGeneratedCode.SourceGenChart.legendPosition">
+            <inheritdoc cref="P:LiveChartsCore.Kernel.Sketches.IChartView.LegendPosition"/>
+        </member>
+        <member name="F:LiveChartsGeneratedCode.SourceGenChart.tooltipPosition">
+            <inheritdoc cref="P:LiveChartsCore.Kernel.Sketches.IChartView.TooltipPosition"/>
+        </member>
+        <member name="F:LiveChartsGeneratedCode.SourceGenChart.legendTextPaint">
+            <inheritdoc cref="P:LiveChartsCore.Kernel.Sketches.IChartView.LegendTextPaint"/>
+        </member>
+        <member name="F:LiveChartsGeneratedCode.SourceGenChart.legendBackgroundPaint">
+            <inheritdoc cref="P:LiveChartsCore.Kernel.Sketches.IChartView.LegendBackgroundPaint"/>
+        </member>
+        <member name="F:LiveChartsGeneratedCode.SourceGenChart.legendTextSize">
+            <inheritdoc cref="P:LiveChartsCore.Kernel.Sketches.IChartView.LegendTextSize"/>
+        </member>
+        <member name="F:LiveChartsGeneratedCode.SourceGenChart.tooltipTextPaint">
+            <inheritdoc cref="P:LiveChartsCore.Kernel.Sketches.IChartView.TooltipTextPaint"/>
+        </member>
+        <member name="F:LiveChartsGeneratedCode.SourceGenChart.tooltipBackgroundPaint">
+            <inheritdoc cref="P:LiveChartsCore.Kernel.Sketches.IChartView.TooltipBackgroundPaint"/>
+        </member>
+        <member name="F:LiveChartsGeneratedCode.SourceGenChart.tooltipTextSize">
+            <inheritdoc cref="P:LiveChartsCore.Kernel.Sketches.IChartView.TooltipTextSize"/>
+        </member>
+        <member name="F:LiveChartsGeneratedCode.SourceGenChart.syncContext">
+            <inheritdoc cref="P:LiveChartsCore.Kernel.Sketches.IChartView.SyncContext"/>
+        </member>
+        <member name="F:LiveChartsGeneratedCode.SourceGenChart.title">
+            <inheritdoc cref="P:LiveChartsCore.Kernel.Sketches.IChartView.Title"/>
+        </member>
+        <member name="F:LiveChartsGeneratedCode.SourceGenChart.visualElements">
+            <inheritdoc cref="P:LiveChartsCore.Kernel.Sketches.IChartView.VisualElements"/>
+        </member>
+        <member name="F:LiveChartsGeneratedCode.SourceGenChart.series">
+            <inheritdoc cref="P:LiveChartsCore.Kernel.Sketches.IChartView.Series"/>
+        </member>
+        <member name="M:LiveChartsGeneratedCode.SourceGenChart.OnObservedPropertyChanged(System.String,System.Object,System.Object)">
+            <summary>
+            Called when an observed property changes.
+            </summary>
+            <param name="propertyName">The property name.</param>
+            <param name="oldValue">The old property value.</param>
+            <param name="newValue">The new property value.</param>
+            <returns></returns>
+        </member>
+        <member name="P:LiveChartsGeneratedCode.SourceGenChart.CoreChart">
+            <summary>
+            Gets the core chart.
+            </summary>
+        </member>
+        <member name="P:LiveChartsGeneratedCode.SourceGenChart.Tooltip">
+            <inheritdoc cref="P:LiveChartsCore.Kernel.Sketches.IChartView.Tooltip" />
+        </member>
+        <member name="P:LiveChartsGeneratedCode.SourceGenChart.Legend">
+            <inheritdoc cref="P:LiveChartsCore.Kernel.Sketches.IChartView.Legend" />
+        </member>
+        <member name="P:LiveChartsGeneratedCode.SourceGenChart.ChartTheme">
+            <inheritdoc cref="P:LiveChartsCore.Kernel.Sketches.IChartView.ChartTheme" />
+        </member>
+        <member name="P:LiveChartsGeneratedCode.SourceGenChart.UpdaterThrottler">
+            <inheritdoc cref="P:LiveChartsCore.Kernel.Sketches.IChartView.UpdaterThrottler" />
+        </member>
+        <member name="P:LiveChartsGeneratedCode.SourceGenChart.AutoUpdateEnabled">
+            <inheritdoc cref="P:LiveChartsCore.Kernel.Sketches.IChartView.AutoUpdateEnabled" />
+        </member>
+        <member name="E:LiveChartsGeneratedCode.SourceGenChart.Measuring">
+            <inheritdoc cref="E:LiveChartsCore.Kernel.Sketches.IChartView.Measuring" />
+        </member>
+        <member name="E:LiveChartsGeneratedCode.SourceGenChart.UpdateFinished">
+            <inheritdoc cref="E:LiveChartsCore.Kernel.Sketches.IChartView.UpdateFinished" />
+        </member>
+        <member name="E:LiveChartsGeneratedCode.SourceGenChart.UpdateStarted">
+            <inheritdoc cref="E:LiveChartsCore.Kernel.Sketches.IChartView.UpdateStarted" />
+        </member>
+        <member name="E:LiveChartsGeneratedCode.SourceGenChart.DataPointerDown">
+            <inheritdoc cref="E:LiveChartsCore.Kernel.Sketches.IChartView.DataPointerDown" />
+        </member>
+        <member name="E:LiveChartsGeneratedCode.SourceGenChart.HoveredPointsChanged">
+            <inheritdoc cref="E:LiveChartsCore.Kernel.Sketches.IChartView.HoveredPointsChanged" />
+        </member>
+        <member name="E:LiveChartsGeneratedCode.SourceGenChart.ChartPointPointerDown">
+            <inheritdoc cref="E:LiveChartsCore.Kernel.Sketches.IChartView.ChartPointPointerDown" />
+        </member>
+        <member name="E:LiveChartsGeneratedCode.SourceGenChart.VisualElementsPointerDown">
+            <inheritdoc cref="E:LiveChartsCore.Kernel.Sketches.IChartView.VisualElementsPointerDown"/>
+        </member>
+        <member name="M:LiveChartsGeneratedCode.SourceGenChart.CreateCoreChart">
+            <summary>
+            Creates the core chart instance for rendering and manipulation.
+            </summary>
+            <remarks>This method is abstract and must be implemented by derived classes to provide     a specific
+            chart type. The returned <see cref="T:LiveChartsCore.Chart"/> object represents the     foundational chart structure, which can
+            be further customized or populated     with data.</remarks>
+            <returns>A <see cref="T:LiveChartsCore.Chart"/> object that serves as the base chart instance.</returns>
+        </member>
+        <member name="M:LiveChartsGeneratedCode.SourceGenChart.GetPointsAt(LiveChartsCore.Drawing.LvcPointD,LiveChartsCore.Measure.FindingStrategy,LiveChartsCore.Measure.FindPointFor)">
+            <inheritdoc cref="M:LiveChartsCore.Kernel.Sketches.IChartView.GetPointsAt(LiveChartsCore.Drawing.LvcPointD,LiveChartsCore.Measure.FindingStrategy,LiveChartsCore.Measure.FindPointFor)"/>
+        </member>
+        <member name="M:LiveChartsGeneratedCode.SourceGenChart.GetVisualsAt(LiveChartsCore.Drawing.LvcPointD)">
+            <inheritdoc cref="M:LiveChartsCore.Kernel.Sketches.IChartView.GetVisualsAt(LiveChartsCore.Drawing.LvcPointD)"/>
+        </member>
+        <member name="M:LiveChartsGeneratedCode.SourceGenChart.ConfigureObserver(LiveChartsCore.Kernel.Observers.ChartObserver)">
+            <summary>
+            Configures the observer properties.
+            </summary>
+            <param name="observe">The current observer.</param>
+        </member>
+        <member name="M:LiveChartsGeneratedCode.SourceGenChart.InitializeObservedProperties">
+            <summary>
+            Initializes the observed properties.
+            </summary>
+        </member>
+        <member name="P:LiveChartsGeneratedCode.SourceGenChart.UpdateStartedCommand">
+            <inheritdoc cref="E:LiveChartsCore.Kernel.Sketches.IChartView.UpdateStarted"/>
+        </member>
+        <member name="P:LiveChartsGeneratedCode.SourceGenChart.DataPointerDownCommand">
+            <inheritdoc cref="E:LiveChartsCore.Kernel.Sketches.IChartView.DataPointerDown"/>
+        </member>
+        <member name="P:LiveChartsGeneratedCode.SourceGenChart.HoveredPointsChangedCommand">
+            <inheritdoc cref="E:LiveChartsCore.Kernel.Sketches.IChartView.HoveredPointsChanged"/>
+        </member>
+        <member name="P:LiveChartsGeneratedCode.SourceGenChart.ChartPointPointerDownCommand">
+            <inheritdoc cref="E:LiveChartsCore.Kernel.Sketches.IChartView.ChartPointPointerDown"/>
+        </member>
+        <member name="P:LiveChartsGeneratedCode.SourceGenChart.VisualElementsPointerDownCommand">
+            <inheritdoc cref="E:LiveChartsCore.Kernel.Sketches.IChartView.VisualElementsPointerDown"/>
+        </member>
+        <member name="P:LiveChartsGeneratedCode.SourceGenChart.PointerPressedCommand">
+            <summary>
+            Ocurrs when the chart is pressed.
+            </summary>
+        </member>
+        <member name="P:LiveChartsGeneratedCode.SourceGenChart.PointerMoveCommand">
+            <summary>
+            Ocurrs when the pointer is moved over the chart.
+            </summary>
+        </member>
+        <member name="P:LiveChartsGeneratedCode.SourceGenChart.PointerReleasedCommand">
+            <summary>
+            Ocurrs when the pointer is released over the chart.
+            </summary>
+        </member>
+        <member name="P:LiveChartsGeneratedCode.SourceGenChart.AnimationsSpeed">
+            <inheritdoc cref="P:LiveChartsCore.Kernel.Sketches.IChartView.AnimationsSpeed"/>
+        </member>
+        <member name="P:LiveChartsGeneratedCode.SourceGenChart.EasingFunction">
+            <inheritdoc cref="P:LiveChartsCore.Kernel.Sketches.IChartView.EasingFunction"/>
+        </member>
+        <member name="P:LiveChartsGeneratedCode.SourceGenChart.DrawMargin">
+            <inheritdoc cref="P:LiveChartsCore.Kernel.Sketches.IChartView.DrawMargin"/>
+        </member>
+        <member name="P:LiveChartsGeneratedCode.SourceGenChart.LegendPosition">
+            <inheritdoc cref="P:LiveChartsCore.Kernel.Sketches.IChartView.LegendPosition"/>
+        </member>
+        <member name="P:LiveChartsGeneratedCode.SourceGenChart.TooltipPosition">
+            <inheritdoc cref="P:LiveChartsCore.Kernel.Sketches.IChartView.TooltipPosition"/>
+        </member>
+        <member name="P:LiveChartsGeneratedCode.SourceGenChart.LegendTextPaint">
+            <inheritdoc cref="P:LiveChartsCore.Kernel.Sketches.IChartView.LegendTextPaint"/>
+        </member>
+        <member name="P:LiveChartsGeneratedCode.SourceGenChart.LegendBackgroundPaint">
+            <inheritdoc cref="P:LiveChartsCore.Kernel.Sketches.IChartView.LegendBackgroundPaint"/>
+        </member>
+        <member name="P:LiveChartsGeneratedCode.SourceGenChart.LegendTextSize">
+            <inheritdoc cref="P:LiveChartsCore.Kernel.Sketches.IChartView.LegendTextSize"/>
+        </member>
+        <member name="P:LiveChartsGeneratedCode.SourceGenChart.TooltipTextPaint">
+            <inheritdoc cref="P:LiveChartsCore.Kernel.Sketches.IChartView.TooltipTextPaint"/>
+        </member>
+        <member name="P:LiveChartsGeneratedCode.SourceGenChart.TooltipBackgroundPaint">
+            <inheritdoc cref="P:LiveChartsCore.Kernel.Sketches.IChartView.TooltipBackgroundPaint"/>
+        </member>
+        <member name="P:LiveChartsGeneratedCode.SourceGenChart.TooltipTextSize">
+            <inheritdoc cref="P:LiveChartsCore.Kernel.Sketches.IChartView.TooltipTextSize"/>
+        </member>
+        <member name="P:LiveChartsGeneratedCode.SourceGenChart.SyncContext">
+            <inheritdoc cref="P:LiveChartsCore.Kernel.Sketches.IChartView.SyncContext"/>
+        </member>
+        <member name="P:LiveChartsGeneratedCode.SourceGenChart.Title">
+            <inheritdoc cref="P:LiveChartsCore.Kernel.Sketches.IChartView.Title"/>
+        </member>
+        <member name="P:LiveChartsGeneratedCode.SourceGenChart.VisualElements">
+            <inheritdoc cref="P:LiveChartsCore.Kernel.Sketches.IChartView.VisualElements"/>
+        </member>
+        <member name="P:LiveChartsGeneratedCode.SourceGenChart.Series">
+            <inheritdoc cref="P:LiveChartsCore.Kernel.Sketches.IChartView.Series"/>
+        </member>
+        <member name="T:LiveChartsGeneratedCode.SourceGenMapChart">
+            <inheritdoc cref="T:LiveChartsCore.Geo.IGeoMapView" />
+            <inheritdoc cref="T:LiveChartsCore.Geo.IGeoMapView" />
+        </member>
+        <member name="M:LiveChartsGeneratedCode.SourceGenMapChart.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:LiveChartsGeneratedCode.SourceGenMapChart"/> class.
+            </summary>
+        </member>
+        <member name="P:LiveChartsGeneratedCode.SourceGenMapChart.CoreCanvas">
+            <inheritdoc cref="P:LiveChartsCore.Kernel.Sketches.IDrawnView.CoreCanvas"/>"/>
+        </member>
+        <member name="M:LiveChartsGeneratedCode.SourceGenMapChart.GetDrawnControl">
+            <summary>
+            Gets the drawn control.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:LiveChartsGeneratedCode.SourceGenMapChart.OnHandleDestroyed(System.EventArgs)">
+            <summary>
+            Raises the <see cref="E:HandleDestroyed" /> event.
+            </summary>
+            <param name="e">The <see cref="T:System.EventArgs"/> instance containing the event data.</param>
+            <returns></returns>
+        </member>
+        <member name="F:LiveChartsGeneratedCode.SourceGenMapChart.syncContext">
+            <inheritdoc cref="P:LiveChartsCore.Geo.IGeoMapView.SyncContext"/>
+        </member>
+        <member name="F:LiveChartsGeneratedCode.SourceGenMapChart.activeMap">
+            <inheritdoc cref="P:LiveChartsCore.Geo.IGeoMapView.ActiveMap"/>
+        </member>
+        <member name="F:LiveChartsGeneratedCode.SourceGenMapChart.mapProjection">
+            <inheritdoc cref="P:LiveChartsCore.Geo.IGeoMapView.MapProjection"/>
+        </member>
+        <member name="F:LiveChartsGeneratedCode.SourceGenMapChart.stroke">
+            <inheritdoc cref="P:LiveChartsCore.Geo.IGeoMapView.Stroke"/>
+        </member>
+        <member name="F:LiveChartsGeneratedCode.SourceGenMapChart.fill">
+            <inheritdoc cref="P:LiveChartsCore.Geo.IGeoMapView.Fill"/>
+        </member>
+        <member name="F:LiveChartsGeneratedCode.SourceGenMapChart.series">
+            <inheritdoc cref="P:LiveChartsCore.Geo.IGeoMapView.Series"/>
+        </member>
+        <member name="P:LiveChartsGeneratedCode.SourceGenMapChart.CoreChart">
+            <summary>
+            Gets the core chart.
+            </summary>
+        </member>
+        <member name="P:LiveChartsGeneratedCode.SourceGenMapChart.AutoUpdateEnabled">
+            <inheritdoc cref="P:LiveChartsCore.Geo.IGeoMapView.AutoUpdateEnabled" />
+        </member>
+        <member name="P:LiveChartsGeneratedCode.SourceGenMapChart.SyncContext">
+            <inheritdoc cref="P:LiveChartsCore.Geo.IGeoMapView.SyncContext"/>
+        </member>
+        <member name="P:LiveChartsGeneratedCode.SourceGenMapChart.ActiveMap">
+            <inheritdoc cref="P:LiveChartsCore.Geo.IGeoMapView.ActiveMap"/>
+        </member>
+        <member name="P:LiveChartsGeneratedCode.SourceGenMapChart.MapProjection">
+            <inheritdoc cref="P:LiveChartsCore.Geo.IGeoMapView.MapProjection"/>
+        </member>
+        <member name="P:LiveChartsGeneratedCode.SourceGenMapChart.Stroke">
+            <inheritdoc cref="P:LiveChartsCore.Geo.IGeoMapView.Stroke"/>
+        </member>
+        <member name="P:LiveChartsGeneratedCode.SourceGenMapChart.Fill">
+            <inheritdoc cref="P:LiveChartsCore.Geo.IGeoMapView.Fill"/>
+        </member>
+        <member name="P:LiveChartsGeneratedCode.SourceGenMapChart.Series">
+            <inheritdoc cref="P:LiveChartsCore.Geo.IGeoMapView.Series"/>
+        </member>
+        <member name="T:LiveChartsGeneratedCode.SourceGenPieChart">
+            <inheritdoc cref="T:LiveChartsCore.Kernel.Sketches.IPieChartView" />
+            <inheritdoc cref="T:LiveChartsCore.Kernel.Sketches.IPieChartView" />
+        </member>
+        <member name="F:LiveChartsGeneratedCode.SourceGenPieChart.isClockwise">
+            <inheritdoc cref="P:LiveChartsCore.Kernel.Sketches.IPieChartView.IsClockwise"/>
+        </member>
+        <member name="F:LiveChartsGeneratedCode.SourceGenPieChart.initialRotation">
+            <inheritdoc cref="P:LiveChartsCore.Kernel.Sketches.IPieChartView.InitialRotation"/>
+        </member>
+        <member name="F:LiveChartsGeneratedCode.SourceGenPieChart.maxAngle">
+            <inheritdoc cref="P:LiveChartsCore.Kernel.Sketches.IPieChartView.MaxAngle"/>
+        </member>
+        <member name="F:LiveChartsGeneratedCode.SourceGenPieChart.maxValue">
+            <inheritdoc cref="P:LiveChartsCore.Kernel.Sketches.IPieChartView.MaxValue"/>
+        </member>
+        <member name="F:LiveChartsGeneratedCode.SourceGenPieChart.minValue">
+            <inheritdoc cref="P:LiveChartsCore.Kernel.Sketches.IPieChartView.MinValue"/>
+        </member>
+        <member name="M:LiveChartsGeneratedCode.SourceGenPieChart.CreateCoreChart">
+            <inheritdoc cref="M:LiveChartsGeneratedCode.SourceGenChart.CreateCoreChart"/>
+        </member>
+        <member name="M:LiveChartsGeneratedCode.SourceGenPieChart.InitializeObservedProperties">
+            <inheritdoc cref="M:LiveChartsGeneratedCode.SourceGenChart.InitializeObservedProperties"/>
+        </member>
+        <member name="P:LiveChartsGeneratedCode.SourceGenPieChart.IsClockwise">
+            <inheritdoc cref="P:LiveChartsCore.Kernel.Sketches.IPieChartView.IsClockwise"/>
+        </member>
+        <member name="P:LiveChartsGeneratedCode.SourceGenPieChart.InitialRotation">
+            <inheritdoc cref="P:LiveChartsCore.Kernel.Sketches.IPieChartView.InitialRotation"/>
+        </member>
+        <member name="P:LiveChartsGeneratedCode.SourceGenPieChart.MaxAngle">
+            <inheritdoc cref="P:LiveChartsCore.Kernel.Sketches.IPieChartView.MaxAngle"/>
+        </member>
+        <member name="P:LiveChartsGeneratedCode.SourceGenPieChart.MaxValue">
+            <inheritdoc cref="P:LiveChartsCore.Kernel.Sketches.IPieChartView.MaxValue"/>
+        </member>
+        <member name="P:LiveChartsGeneratedCode.SourceGenPieChart.MinValue">
+            <inheritdoc cref="P:LiveChartsCore.Kernel.Sketches.IPieChartView.MinValue"/>
+        </member>
+        <member name="T:LiveChartsGeneratedCode.SourceGenPolarChart">
+            <inheritdoc cref="T:LiveChartsCore.Kernel.Sketches.IPolarChartView" />
+            <inheritdoc cref="T:LiveChartsCore.Kernel.Sketches.IPolarChartView" />
+        </member>
+        <member name="F:LiveChartsGeneratedCode.SourceGenPolarChart.fitToBounds">
+            <inheritdoc cref="P:LiveChartsCore.Kernel.Sketches.IPolarChartView.FitToBounds"/>
+        </member>
+        <member name="F:LiveChartsGeneratedCode.SourceGenPolarChart.totalAngle">
+            <inheritdoc cref="P:LiveChartsCore.Kernel.Sketches.IPolarChartView.TotalAngle"/>
+        </member>
+        <member name="F:LiveChartsGeneratedCode.SourceGenPolarChart.innerRadius">
+            <inheritdoc cref="P:LiveChartsCore.Kernel.Sketches.IPolarChartView.InnerRadius"/>
+        </member>
+        <member name="F:LiveChartsGeneratedCode.SourceGenPolarChart.initialRotation">
+            <inheritdoc cref="P:LiveChartsCore.Kernel.Sketches.IPolarChartView.InitialRotation"/>
+        </member>
+        <member name="F:LiveChartsGeneratedCode.SourceGenPolarChart.angleAxes">
+            <inheritdoc cref="P:LiveChartsCore.Kernel.Sketches.IPolarChartView.AngleAxes"/>
+        </member>
+        <member name="F:LiveChartsGeneratedCode.SourceGenPolarChart.radiusAxes">
+            <inheritdoc cref="P:LiveChartsCore.Kernel.Sketches.IPolarChartView.RadiusAxes"/>
+        </member>
+        <member name="M:LiveChartsGeneratedCode.SourceGenPolarChart.ScalePixelsToData(LiveChartsCore.Drawing.LvcPointD,System.Int32,System.Int32)">
+            <inheritdoc cref="M:LiveChartsCore.Kernel.Sketches.IPolarChartView.ScalePixelsToData(LiveChartsCore.Drawing.LvcPointD,System.Int32,System.Int32)"/>
+        </member>
+        <member name="M:LiveChartsGeneratedCode.SourceGenPolarChart.ScaleDataToPixels(LiveChartsCore.Drawing.LvcPointD,System.Int32,System.Int32)">
+            <inheritdoc cref="M:LiveChartsCore.Kernel.Sketches.IPolarChartView.ScaleDataToPixels(LiveChartsCore.Drawing.LvcPointD,System.Int32,System.Int32)"/>
+        </member>
+        <member name="M:LiveChartsGeneratedCode.SourceGenPolarChart.CreateCoreChart">
+            <inheritdoc cref="M:LiveChartsGeneratedCode.SourceGenChart.CreateCoreChart"/>
+        </member>
+        <member name="M:LiveChartsGeneratedCode.SourceGenPolarChart.ConfigureObserver(LiveChartsCore.Kernel.Observers.ChartObserver)">
+            <inheritdoc cref="M:LiveChartsGeneratedCode.SourceGenChart.ConfigureObserver(LiveChartsCore.Kernel.Observers.ChartObserver)"/>
+        </member>
+        <member name="M:LiveChartsGeneratedCode.SourceGenPolarChart.InitializeObservedProperties">
+            <inheritdoc cref="M:LiveChartsGeneratedCode.SourceGenChart.InitializeObservedProperties"/>
+        </member>
+        <member name="P:LiveChartsGeneratedCode.SourceGenPolarChart.FitToBounds">
+            <inheritdoc cref="P:LiveChartsCore.Kernel.Sketches.IPolarChartView.FitToBounds"/>
+        </member>
+        <member name="P:LiveChartsGeneratedCode.SourceGenPolarChart.TotalAngle">
+            <inheritdoc cref="P:LiveChartsCore.Kernel.Sketches.IPolarChartView.TotalAngle"/>
+        </member>
+        <member name="P:LiveChartsGeneratedCode.SourceGenPolarChart.InnerRadius">
+            <inheritdoc cref="P:LiveChartsCore.Kernel.Sketches.IPolarChartView.InnerRadius"/>
+        </member>
+        <member name="P:LiveChartsGeneratedCode.SourceGenPolarChart.InitialRotation">
+            <inheritdoc cref="P:LiveChartsCore.Kernel.Sketches.IPolarChartView.InitialRotation"/>
+        </member>
+        <member name="P:LiveChartsGeneratedCode.SourceGenPolarChart.AngleAxes">
+            <inheritdoc cref="P:LiveChartsCore.Kernel.Sketches.IPolarChartView.AngleAxes"/>
+        </member>
+        <member name="P:LiveChartsGeneratedCode.SourceGenPolarChart.RadiusAxes">
+            <inheritdoc cref="P:LiveChartsCore.Kernel.Sketches.IPolarChartView.RadiusAxes"/>
+        </member>
+    </members>
+</doc>
