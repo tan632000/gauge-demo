@@ -1,5 +1,4 @@
-using System;
-using System;
+﻿using System;
 using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
@@ -9,10 +8,27 @@ namespace TestGauge
 {
     public class GaugeControl : UserControl
     {
-        private double _value = 0;
+        // Default values moved into the control so it can be reused without per-form init
+        private double _value = 1200;
         private double _from = 0;
-        private double _to = 100;
+        private double _to = 2000;
 
+        // Simulation (moved from Form1 into the control so it can be used as a self-contained component)
+        private readonly Timer _simTimer;
+        private readonly Random _rnd = new Random();
+        private double _simTarget;
+        private bool _simulating = true;
+        private int _simInterval = 800;
+
+        // Labels / decoration
+        private string _title = "TỐC ĐỘ TRỌN (RPM)";
+        private bool _showTitle = true;
+        private bool _showMaxLabel = true;
+        private string _maxLabel = "2000";
+        private bool _showSetpoint = true;
+        private double _setpoint = 1200;
+
+        [DefaultValue(0.0)]
         [Category("Gauge")]
         public double From
         {
@@ -20,6 +36,7 @@ namespace TestGauge
             set { _from = value; Invalidate(); }
         }
 
+        [DefaultValue(2000.0)]
         [Category("Gauge")]
         public double To
         {
@@ -27,6 +44,7 @@ namespace TestGauge
             set { _to = value; Invalidate(); }
         }
 
+        [DefaultValue(1200.0)]
         [Category("Gauge")]
         public double Value
         {
@@ -47,6 +65,96 @@ namespace TestGauge
             DoubleBuffered = true;
             ResizeRedraw = true;
             BackColor = Color.FromArgb(35, 40, 45);
+            // ensure properties are in a consistent state and designer won't need to set them
+            this.From = _from;
+            this.To = _to;
+            this.Value = _value;
+            // setup internal simulation timer so the control can animate itself when used as a component
+            _simTimer = new Timer();
+            _simTimer.Interval = _simInterval;
+            _simTimer.Tick += (s, e) => SimTick();
+            if (_simulating)
+            {
+                // pick initial target
+                _simTarget = _rnd.Next((int)_from, (int)_to + 1);
+                _simTimer.Start();
+            }
+        }
+
+        [Category("Gauge")]
+        [DefaultValue(true)]
+        public bool Simulate
+        {
+            get => _simulating;
+            set
+            {
+                _simulating = value;
+                if (_simulating)
+                {
+                    if (!_simTimer.Enabled) _simTimer.Start();
+                }
+                else
+                {
+                    if (_simTimer.Enabled) _simTimer.Stop();
+                }
+            }
+        }
+
+        [Category("Gauge")]
+        [DefaultValue(800)]
+        public int SimInterval
+        {
+            get => _simInterval;
+            set
+            {
+                _simInterval = Math.Max(50, value);
+                if (_simTimer != null) _simTimer.Interval = _simInterval;
+            }
+        }
+
+        [Category("Appearance")]
+        [DefaultValue(true)]
+        public bool ShowTitle
+        {
+            get => _showTitle;
+            set { _showTitle = value; Invalidate(); }
+        }
+
+        [Category("Appearance")]
+        public string Title
+        {
+            get => _title;
+            set { _title = value ?? string.Empty; Invalidate(); }
+        }
+
+        [Category("Appearance")]
+        [DefaultValue(true)]
+        public bool ShowMaxLabel
+        {
+            get => _showMaxLabel;
+            set { _showMaxLabel = value; Invalidate(); }
+        }
+
+        [Category("Appearance")]
+        public string MaxLabel
+        {
+            get => _maxLabel;
+            set { _maxLabel = value ?? string.Empty; Invalidate(); }
+        }
+
+        [Category("Appearance")]
+        [DefaultValue(true)]
+        public bool ShowSetpoint
+        {
+            get => _showSetpoint;
+            set { _showSetpoint = value; Invalidate(); }
+        }
+
+        [Category("Appearance")]
+        public double Setpoint
+        {
+            get => _setpoint;
+            set { _setpoint = value; Invalidate(); }
         }
 
         protected override void OnPaint(PaintEventArgs e)
@@ -57,6 +165,26 @@ namespace TestGauge
 
             var rect = ClientRectangle;
             g.Clear(BackColor);
+
+            // draw title and max label
+            if (_showTitle)
+            {
+                using (var titleFont = new Font(FontFamily.GenericSansSerif, 10f, FontStyle.Bold))
+                using (var sf = new StringFormat { Alignment = StringAlignment.Near, LineAlignment = StringAlignment.Near })
+                using (var brush = new SolidBrush(Color.FromArgb(200, 200, 210)))
+                {
+                    g.DrawString(_title, titleFont, brush, new PointF(12, 6), sf);
+                }
+            }
+            if (_showMaxLabel)
+            {
+                using (var maxFont = new Font(FontFamily.GenericSansSerif, 9f))
+                using (var sf = new StringFormat { Alignment = StringAlignment.Far, LineAlignment = StringAlignment.Near })
+                using (var brush = new SolidBrush(Color.FromArgb(180, 180, 190)))
+                {
+                    g.DrawString(_maxLabel, maxFont, brush, new RectangleF(0, 6, rect.Width - 12, 18), sf);
+                }
+            }
 
             // padding and sizes
             int padding = 20;
@@ -145,7 +273,45 @@ namespace TestGauge
                 var center = new PointF(ClientRectangle.Width / 2f, ClientRectangle.Height * 0.62f);
                 g.DrawString(valueText, valueFont, Brushes.AliceBlue, center, sf);
                 g.DrawString(unit, unitFont, Brushes.LightGray, new PointF(center.X, center.Y + 26), sf);
+                // setpoint / small label below
+                if (_showSetpoint)
+                {
+                    using (var spFont = new Font(FontFamily.GenericSansSerif, 9f))
+                    using (var spBrush = new SolidBrush(Color.FromArgb(160, 200, 230)))
+                    {
+                        var spText = $"Setpoint: {(int)_setpoint} rpm";
+                        g.DrawString(spText, spFont, spBrush, new PointF(center.X, center.Y + 46), sf);
+                    }
+                }
             }
+        }
+
+        private void SimTick()
+        {
+            // animate value toward a random target to simulate RPM changes
+            if (!_simulating) return;
+            // if reached target or no target, choose a new one occasionally
+            if (Math.Abs(_simTarget - _value) < 1.0)
+            {
+                _simTarget = _rnd.Next((int)_from, (int)_to + 1);
+            }
+            var current = _value;
+            var newValue = current + (_simTarget - current) * 0.25;
+            Value = newValue;
+            // optionally update setpoint as last value so visual matches
+            _setpoint = _value;
+        }
+
+        private void InitializeComponent()
+        {
+            this.SuspendLayout();
+            // 
+            // GaugeControl
+            // 
+            this.Name = "GaugeControl";
+            this.Size = new System.Drawing.Size(199, 146);
+            this.ResumeLayout(false);
+
         }
     }
 }

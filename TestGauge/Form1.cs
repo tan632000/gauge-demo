@@ -1,5 +1,4 @@
 ﻿using System;
-using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -16,57 +15,97 @@ namespace TestGauge
         public Form1()
         {
             InitializeComponent();
-            // start timer to animate the gauge value periodically
-            this.timer1.Start();
-            _rnd = new Random();
+            // gauge control contains its own simulation now; no per-form timer required
         }
 
-        private readonly Random _rnd;
-
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            // animate value toward a random target to simulate RPM changes
-            var target = _rnd.Next(0, 2001);
-            // simple smooth change
-            var current = (double)gauge1.Value;
-            var newValue = current + (target - current) * 0.25;
-            gauge1.Value = newValue;
-            // optional: force repaint
-            gauge1.Invalidate();
-        }
 
         // Designer-like initialization moved here to keep single-file Form implementation
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.gauge1 = new GaugeControl();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
-
-            // gauge1
-            this.gauge1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            this.gauge1.Location = new Point(12, 12);
-            this.gauge1.Name = "gauge1";
-            this.gauge1.Size = new Size(560, 320);
-            this.gauge1.TabIndex = 0;
-            this.gauge1.Text = "gauge1";
-            this.gauge1.From = 0;
-            this.gauge1.To = 2000;
-            this.gauge1.Value = 1200;
-
-            // timer1
-            this.timer1.Interval = 800;
-            this.timer1.Tick += new EventHandler(this.timer1_Tick);
-
+            this.skiaGaugeCurrent = new TestGauge.SkiaGaugeControl();
+            this.skiaGaugeSpeed = new TestGauge.SkiaGaugeControl();
+            this.skiaGaugeTemp = new TestGauge.SkiaGaugeControl();
+            this.SuspendLayout();
+            // 
+            // skiaGaugeCurrent
+            // 
+            this.skiaGaugeCurrent.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(40)))), ((int)(((byte)(45)))));
+            this.skiaGaugeCurrent.Location = new System.Drawing.Point(804, 40);
+            this.skiaGaugeCurrent.Name = "skiaGaugeCurrent";
+            this.skiaGaugeCurrent.Simulate = true;
+            this.skiaGaugeCurrent.Size = new System.Drawing.Size(371, 300);
+            this.skiaGaugeCurrent.TabIndex = 2;
+            this.skiaGaugeCurrent.Title = "DÒNG ĐIỆN (A)";
+            this.skiaGaugeCurrent.To = 100D;
+            this.skiaGaugeCurrent.Unit = "A";
+            this.skiaGaugeCurrent.Value = 45.6D;
+            this.skiaGaugeCurrent.ProgressColor = System.Drawing.Color.FromArgb(255, 190, 0);
+            this.skiaGaugeCurrent.SegmentColor1 = System.Drawing.Color.FromArgb(255, 200, 0);
+            this.skiaGaugeCurrent.SegmentColor2 = System.Drawing.Color.FromArgb(255, 140, 0);
+            this.skiaGaugeCurrent.SegmentWeight1 = 70D; // larger warm area
+            this.skiaGaugeCurrent.SegmentWeight2 = 30D;
+            // animate to the actual current value as the setpoint
+            this.skiaGaugeCurrent.Setpoint = 45.6D;
+            this.skiaGaugeCurrent.LoadPercent = 57D;
+            this.skiaGaugeCurrent.NeedleColor = System.Drawing.Color.FromArgb(240,240,240);
+            // 
+            // skiaGaugeSpeed
+            // 
+            this.skiaGaugeSpeed.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(40)))), ((int)(((byte)(45)))));
+            this.skiaGaugeSpeed.Location = new System.Drawing.Point(418, 40);
+            this.skiaGaugeSpeed.Name = "skiaGaugeSpeed";
+            this.skiaGaugeSpeed.Simulate = true;
+            this.skiaGaugeSpeed.Size = new System.Drawing.Size(349, 300);
+            this.skiaGaugeSpeed.TabIndex = 1;
+            this.skiaGaugeSpeed.Title = "TỐC ĐỘ TRỘN (RPM)";
+            this.skiaGaugeSpeed.Value = 1200D;
+            this.skiaGaugeSpeed.ProgressColor = System.Drawing.Color.FromArgb(85,170,255);
+            this.skiaGaugeSpeed.ArcBackgroundColor = System.Drawing.Color.FromArgb(40,50,60);
+            this.skiaGaugeSpeed.NeedleColor = System.Drawing.Color.FromArgb(200,200,200);
+            this.skiaGaugeSpeed.From = 0D;
+            this.skiaGaugeSpeed.To = 2000D;
+            this.skiaGaugeSpeed.Setpoint = 1200D;
+            // 
+            // skiaGaugeTemp
+            // 
+            this.skiaGaugeTemp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(40)))), ((int)(((byte)(45)))));
+            this.skiaGaugeTemp.Location = new System.Drawing.Point(30, 40);
+            this.skiaGaugeTemp.Name = "skiaGaugeTemp";
+            this.skiaGaugeTemp.Simulate = true;
+            this.skiaGaugeTemp.Size = new System.Drawing.Size(351, 300);
+            this.skiaGaugeTemp.TabIndex = 0;
+            this.skiaGaugeTemp.Title = "NHIỆT ĐỘ (°C)";
+            this.skiaGaugeTemp.To = 120D;
+            this.skiaGaugeTemp.Unit = "°C";
+            this.skiaGaugeTemp.Value = 65.2D;
+            this.skiaGaugeTemp.SegmentColor1 = System.Drawing.Color.FromArgb(30,200,30);
+            this.skiaGaugeTemp.SegmentColor2 = System.Drawing.Color.FromArgb(255,200,0);
+            this.skiaGaugeTemp.SegmentColor3 = System.Drawing.Color.FromArgb(255,140,0);
+            this.skiaGaugeTemp.SegmentColor4 = System.Drawing.Color.FromArgb(220,40,40);
+            this.skiaGaugeTemp.SegmentWeight1 = 50D;
+            this.skiaGaugeTemp.SegmentWeight2 = 25D;
+            this.skiaGaugeTemp.SegmentWeight3 = 15D;
+            this.skiaGaugeTemp.SegmentWeight4 = 10D;
+            this.skiaGaugeTemp.Setpoint = 70D;
+            this.skiaGaugeTemp.NeedleColor = System.Drawing.Color.FromArgb(240,240,240);
+            // 
             // Form1
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new Size(584, 361);
-            this.Controls.Add(this.gauge1);
+            this.ClientSize = new System.Drawing.Size(1211, 362);
+            this.Controls.Add(this.skiaGaugeCurrent);
+            this.Controls.Add(this.skiaGaugeSpeed);
+            this.Controls.Add(this.skiaGaugeTemp);
             this.Name = "Form1";
             this.Text = "Gauge Demo";
+            this.ResumeLayout(false);
+
         }
 
         private System.ComponentModel.IContainer components;
-        private GaugeControl gauge1;
-        private System.Windows.Forms.Timer timer1;
+        private SkiaGaugeControl skiaGaugeTemp;
+        private SkiaGaugeControl skiaGaugeSpeed;
+        private SkiaGaugeControl skiaGaugeCurrent;
     }
 }
