@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<coreProperties xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:dcterms="http://purl.org/dc/terms/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://schemas.openxmlformats.org/package/2006/metadata/core-properties">
+  <dc:creator>Microsoft</dc:creator>
+  <dc:description>SkiaSharp is a cross-platform 2D graphics API for .NET platforms based on Google's Skia Graphics Library.
+It provides a comprehensive 2D API that can be used across mobile, server and desktop models to render images.</dc:description>
+  <dc:identifier>SkiaSharp.NativeAssets.Win32</dc:identifier>
+  <version>2.88.9</version>
+  <keywords>xamarin graphics ios android linux windows uwp tvos watchos macos tizen cross-platform skiasharp</keywords>
+  <lastModifiedBy>NuGet, Version=6.11.1.2, Culture=neutral, PublicKeyToken=31bf3856ad364e35;Microsoft Windows NT 10.0.20348.0;.NET Framework 4.7.2</lastModifiedBy>
+</coreProperties>

@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System;
 using System.Windows.Forms;
 
 namespace TestGauge
@@ -15,97 +8,63 @@ namespace TestGauge
         public Form1()
         {
             InitializeComponent();
-            // gauge control contains its own simulation now; no per-form timer required
         }
 
-
-        // Designer-like initialization moved here to keep single-file Form implementation
         private void InitializeComponent()
         {
-            this.skiaGaugeCurrent = new TestGauge.SkiaGaugeControl();
-            this.skiaGaugeSpeed = new TestGauge.SkiaGaugeControl();
-            this.skiaGaugeTemp = new TestGauge.SkiaGaugeControl();
+            this.eventControl1 = new TestGauge.EventControl();
+            this.alarmControl1 = new TestGauge.AlarmControl();
             this.SuspendLayout();
             // 
-            // skiaGaugeCurrent
+            // eventControl1
             // 
-            this.skiaGaugeCurrent.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(40)))), ((int)(((byte)(45)))));
-            this.skiaGaugeCurrent.Location = new System.Drawing.Point(804, 40);
-            this.skiaGaugeCurrent.Name = "skiaGaugeCurrent";
-            this.skiaGaugeCurrent.Simulate = true;
-            this.skiaGaugeCurrent.Size = new System.Drawing.Size(371, 300);
-            this.skiaGaugeCurrent.TabIndex = 2;
-            this.skiaGaugeCurrent.Title = "DÒNG ĐIỆN (A)";
-            this.skiaGaugeCurrent.To = 100D;
-            this.skiaGaugeCurrent.Unit = "A";
-            this.skiaGaugeCurrent.Value = 45.6D;
-            this.skiaGaugeCurrent.ProgressColor = System.Drawing.Color.FromArgb(255, 190, 0);
-            this.skiaGaugeCurrent.SegmentColor1 = System.Drawing.Color.FromArgb(255, 200, 0);
-            this.skiaGaugeCurrent.SegmentColor2 = System.Drawing.Color.FromArgb(255, 140, 0);
-            this.skiaGaugeCurrent.SegmentWeight1 = 70D; // larger warm area
-            this.skiaGaugeCurrent.SegmentWeight2 = 30D;
-            // animate to the actual current value as the setpoint
-            this.skiaGaugeCurrent.Setpoint = 45.6D;
-            this.skiaGaugeCurrent.LoadPercent = 57D;
-            this.skiaGaugeCurrent.NeedleColor = System.Drawing.Color.FromArgb(240,240,240);
+            this.eventControl1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(17)))), ((int)(((byte)(23)))));
+            this.eventControl1.BackColorHover = null;
+            this.eventControl1.BackColorNormal = null;
+            this.eventControl1.CloseColor = null;
+            this.eventControl1.CornerRadius = 10;
+            this.eventControl1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.eventControl1.IconSize = 20;
+            this.eventControl1.Name = "eventControl1";
+            this.eventControl1.OpenColor = null;
+            this.eventControl1.RunColor = null;
+            this.eventControl1.Size = new System.Drawing.Size(600, 64);
+            this.eventControl1.Status = TestGauge.EventStatus.Run;
+            this.eventControl1.StopColor = null;
+            this.eventControl1.SubtextColor = null;
+            this.eventControl1.TabIndex = 0;
+            this.eventControl1.TextColor = null;
+            this.eventControl1.Time = new System.DateTime(2026, 5, 6, 10, 16, 34, 23);
+            this.eventControl1.TripColor = null;
             // 
-            // skiaGaugeSpeed
+            // alarmControl1
             // 
-            this.skiaGaugeSpeed.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(40)))), ((int)(((byte)(45)))));
-            this.skiaGaugeSpeed.Location = new System.Drawing.Point(418, 40);
-            this.skiaGaugeSpeed.Name = "skiaGaugeSpeed";
-            this.skiaGaugeSpeed.Simulate = true;
-            this.skiaGaugeSpeed.Size = new System.Drawing.Size(349, 300);
-            this.skiaGaugeSpeed.TabIndex = 1;
-            this.skiaGaugeSpeed.Title = "TỐC ĐỘ TRỘN (RPM)";
-            this.skiaGaugeSpeed.Value = 1200D;
-            this.skiaGaugeSpeed.ProgressColor = System.Drawing.Color.FromArgb(85,170,255);
-            this.skiaGaugeSpeed.ArcBackgroundColor = System.Drawing.Color.FromArgb(40,50,60);
-            this.skiaGaugeSpeed.NeedleColor = System.Drawing.Color.FromArgb(200,200,200);
-            this.skiaGaugeSpeed.From = 0D;
-            this.skiaGaugeSpeed.To = 2000D;
-            this.skiaGaugeSpeed.Setpoint = 1200D;
-            // 
-            // skiaGaugeTemp
-            // 
-            this.skiaGaugeTemp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(35)))), ((int)(((byte)(40)))), ((int)(((byte)(45)))));
-            this.skiaGaugeTemp.Location = new System.Drawing.Point(30, 40);
-            this.skiaGaugeTemp.Name = "skiaGaugeTemp";
-            this.skiaGaugeTemp.Simulate = true;
-            this.skiaGaugeTemp.Size = new System.Drawing.Size(351, 300);
-            this.skiaGaugeTemp.TabIndex = 0;
-            this.skiaGaugeTemp.Title = "NHIỆT ĐỘ (°C)";
-            this.skiaGaugeTemp.To = 120D;
-            this.skiaGaugeTemp.Unit = "°C";
-            this.skiaGaugeTemp.Value = 65.2D;
-            this.skiaGaugeTemp.SegmentColor1 = System.Drawing.Color.FromArgb(30,200,30);
-            this.skiaGaugeTemp.SegmentColor2 = System.Drawing.Color.FromArgb(255,200,0);
-            this.skiaGaugeTemp.SegmentColor3 = System.Drawing.Color.FromArgb(255,140,0);
-            this.skiaGaugeTemp.SegmentColor4 = System.Drawing.Color.FromArgb(220,40,40);
-            this.skiaGaugeTemp.SegmentWeight1 = 50D;
-            this.skiaGaugeTemp.SegmentWeight2 = 25D;
-            this.skiaGaugeTemp.SegmentWeight3 = 15D;
-            this.skiaGaugeTemp.SegmentWeight4 = 10D;
-            this.skiaGaugeTemp.Setpoint = 70D;
-            this.skiaGaugeTemp.NeedleColor = System.Drawing.Color.FromArgb(240,240,240);
+            this.alarmControl1.AlarmColor = null;
+            this.alarmControl1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(13)))), ((int)(((byte)(17)))), ((int)(((byte)(23)))));
+            this.alarmControl1.BackColorHover = null;
+            this.alarmControl1.BackColorNormal = null;
+            this.alarmControl1.CornerRadius = 10;
+            this.alarmControl1.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.alarmControl1.IconSize = 28;
+            this.alarmControl1.Location = new System.Drawing.Point(0, 70);
+            this.alarmControl1.Name = "alarmControl1";
+            this.alarmControl1.Severity = TestGauge.AlarmSeverity.Warning;
+            this.alarmControl1.Size = new System.Drawing.Size(600, 64);
+            this.alarmControl1.SubtextColor = null;
+            this.alarmControl1.TabIndex = 1;
+            this.alarmControl1.TextColor = null;
+            this.alarmControl1.Time = new System.DateTime(2026, 5, 6, 10, 18, 17, 236);
+            this.alarmControl1.Title = "Title";
+            this.alarmControl1.WarningColor = null;
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1211, 362);
-            this.Controls.Add(this.skiaGaugeCurrent);
-            this.Controls.Add(this.skiaGaugeSpeed);
-            this.Controls.Add(this.skiaGaugeTemp);
+            this.ClientSize = new System.Drawing.Size(854, 414);
+            this.Controls.Add(this.alarmControl1);
+            this.Controls.Add(this.eventControl1);
             this.Name = "Form1";
-            this.Text = "Gauge Demo";
             this.ResumeLayout(false);
 
         }
-
-        private System.ComponentModel.IContainer components;
-        private SkiaGaugeControl skiaGaugeTemp;
-        private SkiaGaugeControl skiaGaugeSpeed;
-        private SkiaGaugeControl skiaGaugeCurrent;
     }
 }

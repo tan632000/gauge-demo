@@ -9,9 +9,9 @@ namespace TestGauge
     public class GaugeControl : UserControl
     {
         // Default values moved into the control so it can be reused without per-form init
-        private double _value = 1200;
-        private double _from = 0;
-        private double _to = 2000;
+        private double _currentValue = 1200;
+        private double _minValue = 0;
+        private double _maxValue = 2000;
 
         // Simulation (moved from Form1 into the control so it can be used as a self-contained component)
         private readonly Timer _simTimer;
@@ -20,41 +20,40 @@ namespace TestGauge
         private bool _simulating = true;
         private int _simInterval = 800;
 
-        // Labels / decoration
-        private string _title = "TỐC ĐỘ TRỌN (RPM)";
-        private bool _showTitle = true;
-        private bool _showMaxLabel = true;
-        private string _maxLabel = "2000";
-        private bool _showSetpoint = true;
-        private double _setpoint = 1200;
+        // Value label
+        private Label _lblValue;
+
+        [Category("Gauge")]
+        public Label LblValue { get => _lblValue; }
 
         [DefaultValue(0.0)]
         [Category("Gauge")]
-        public double From
+        public double MinValue
         {
-            get => _from;
-            set { _from = value; Invalidate(); }
+            get => _minValue;
+            set { _minValue = value; Invalidate(); }
         }
 
         [DefaultValue(2000.0)]
         [Category("Gauge")]
-        public double To
+        public double MaxValue
         {
-            get => _to;
-            set { _to = value; Invalidate(); }
+            get => _maxValue;
+            set { _maxValue = value; Invalidate(); }
         }
 
         [DefaultValue(1200.0)]
         [Category("Gauge")]
-        public double Value
+        public double CurrentValue
         {
-            get => _value;
+            get => _currentValue;
             set
             {
-                var v = Math.Max(_from, Math.Min(_to, value));
-                if (Math.Abs(_value - v) > double.Epsilon)
+                var v = Math.Max(_minValue, Math.Min(_maxValue, value));
+                if (Math.Abs(_currentValue - v) > double.Epsilon)
                 {
-                    _value = v;
+                    _currentValue = v;
+                    if (_lblValue != null) _lblValue.Text = FormatValueText();
                     Invalidate();
                 }
             }
@@ -65,18 +64,26 @@ namespace TestGauge
             DoubleBuffered = true;
             ResizeRedraw = true;
             BackColor = Color.FromArgb(35, 40, 45);
-            // ensure properties are in a consistent state and designer won't need to set them
-            this.From = _from;
-            this.To = _to;
-            this.Value = _value;
-            // setup internal simulation timer so the control can animate itself when used as a component
+
+            // Value + unit label (below needle, centered)
+            _lblValue = new Label
+            {
+                Text = FormatValueText(),
+                ForeColor = Color.AliceBlue,
+                Font = new Font(FontFamily.GenericSansSerif, 22f, FontStyle.Bold),
+                AutoSize = true,
+                TextAlign = ContentAlignment.MiddleCenter,
+                BackColor = Color.Transparent
+            };
+            Controls.Add(_lblValue);
+
+            // setup internal simulation timer
             _simTimer = new Timer();
             _simTimer.Interval = _simInterval;
             _simTimer.Tick += (s, e) => SimTick();
             if (_simulating)
             {
-                // pick initial target
-                _simTarget = _rnd.Next((int)_from, (int)_to + 1);
+                _simTarget = _rnd.Next((int)_minValue, (int)_maxValue + 1);
                 _simTimer.Start();
             }
         }
@@ -112,49 +119,55 @@ namespace TestGauge
             }
         }
 
-        [Category("Appearance")]
-        [DefaultValue(true)]
-        public bool ShowTitle
-        {
-            get => _showTitle;
-            set { _showTitle = value; Invalidate(); }
-        }
+        private string _unit = "rpm";
+
+        // Colors
+        private Color _arcBackColor = Color.FromArgb(60, 100, 120);
+        private Color _progressColor = Color.FromArgb(85, 170, 255);
+        private Color _needleColor = Color.LightGray;
+        private Color _tickColor = Color.FromArgb(120, 160, 180);
+        private Color _hubColor = Color.FromArgb(220, 220, 220);
 
         [Category("Appearance")]
-        public string Title
+        public string Unit
         {
-            get => _title;
-            set { _title = value ?? string.Empty; Invalidate(); }
+            get => _unit;
+            set { _unit = value ?? string.Empty; if (_lblValue != null) _lblValue.Text = FormatValueText(); }
         }
 
-        [Category("Appearance")]
-        [DefaultValue(true)]
-        public bool ShowMaxLabel
+        [Category("Colors")]
+        public Color ArcBackColor
         {
-            get => _showMaxLabel;
-            set { _showMaxLabel = value; Invalidate(); }
+            get => _arcBackColor;
+            set { _arcBackColor = value; Invalidate(); }
         }
 
-        [Category("Appearance")]
-        public string MaxLabel
+        [Category("Colors")]
+        public Color ProgressColor
         {
-            get => _maxLabel;
-            set { _maxLabel = value ?? string.Empty; Invalidate(); }
+            get => _progressColor;
+            set { _progressColor = value; Invalidate(); }
         }
 
-        [Category("Appearance")]
-        [DefaultValue(true)]
-        public bool ShowSetpoint
+        [Category("Colors")]
+        public Color NeedleColor
         {
-            get => _showSetpoint;
-            set { _showSetpoint = value; Invalidate(); }
+            get => _needleColor;
+            set { _needleColor = value; Invalidate(); }
         }
 
-        [Category("Appearance")]
-        public double Setpoint
+        [Category("Colors")]
+        public Color TickColor
         {
-            get => _setpoint;
-            set { _setpoint = value; Invalidate(); }
+            get => _tickColor;
+            set { _tickColor = value; Invalidate(); }
+        }
+
+        [Category("Colors")]
+        public Color HubColor
+        {
+            get => _hubColor;
+            set { _hubColor = value; Invalidate(); }
         }
 
         protected override void OnPaint(PaintEventArgs e)
@@ -166,124 +179,78 @@ namespace TestGauge
             var rect = ClientRectangle;
             g.Clear(BackColor);
 
-            // draw title and max label
-            if (_showTitle)
-            {
-                using (var titleFont = new Font(FontFamily.GenericSansSerif, 10f, FontStyle.Bold))
-                using (var sf = new StringFormat { Alignment = StringAlignment.Near, LineAlignment = StringAlignment.Near })
-                using (var brush = new SolidBrush(Color.FromArgb(200, 200, 210)))
-                {
-                    g.DrawString(_title, titleFont, brush, new PointF(12, 6), sf);
-                }
-            }
-            if (_showMaxLabel)
-            {
-                using (var maxFont = new Font(FontFamily.GenericSansSerif, 9f))
-                using (var sf = new StringFormat { Alignment = StringAlignment.Far, LineAlignment = StringAlignment.Near })
-                using (var brush = new SolidBrush(Color.FromArgb(180, 180, 190)))
-                {
-                    g.DrawString(_maxLabel, maxFont, brush, new RectangleF(0, 6, rect.Width - 12, 18), sf);
-                }
-            }
+            float cx = rect.Width / 2f;
+            float cy = rect.Height * 0.62f;
+            float radius = Math.Min(rect.Width / 2f - 35f, rect.Height * 0.55f);
+            var arcRect = new RectangleF(cx - radius, cy - radius, radius * 2, radius * 2);
 
-            // padding and sizes
-            int padding = 20;
-            var arcRect = new Rectangle(padding, padding, rect.Width - padding * 2, (rect.Height - padding * 2) * 2);
+            float startAngle = 180f;
+            float sweepAngle = 180f;
 
-            // arc parameters
-            float startAngle = 135f; // left-bottom
-            float sweepAngle = 270f; // to right-bottom
-
-            // base arc (background)
-            using (var pen = new Pen(Color.FromArgb(60, 100, 120), 18f) { StartCap = LineCap.Round, EndCap = LineCap.Round })
-            {
+            using (var pen = new Pen(_arcBackColor, 18f) { StartCap = LineCap.Round, EndCap = LineCap.Round })
                 g.DrawArc(pen, arcRect, startAngle, sweepAngle);
-            }
 
-            // progress arc
-            double t = (_value - _from) / Math.Max(1.0, (_to - _from));
+            double t = (_currentValue - _minValue) / Math.Max(1.0, (_maxValue - _minValue));
             float progressSweep = (float)(sweepAngle * t);
-            using (var pen = new Pen(Color.FromArgb(85, 170, 255), 18f) { StartCap = LineCap.Round, EndCap = LineCap.Round })
-            {
+            using (var pen = new Pen(_progressColor, 18f) { StartCap = LineCap.Round, EndCap = LineCap.Round })
                 g.DrawArc(pen, arcRect, startAngle, progressSweep);
-            }
 
-            // draw ticks and labels
-            DrawTicks(g, arcRect, startAngle, sweepAngle);
-
-            // draw needle
-            DrawNeedle(g, arcRect, startAngle + progressSweep);
-
-            // draw center text
-            DrawCenterText(g);
+            DrawTicks(g, cx, cy, radius, startAngle, sweepAngle);
+            DrawNeedle(g, cx, cy, radius, startAngle + progressSweep);
         }
 
-        private void DrawTicks(Graphics g, Rectangle arcRect, float startAngle, float sweepAngle)
+        private void DrawTicks(Graphics g, float cx, float cy, float radius, float startAngle, float sweepAngle)
         {
             int majorTicks = 5;
-            var center = new PointF(ClientRectangle.Width / 2f, ClientRectangle.Height * 0.75f);
-            float radius = Math.Min(arcRect.Width, arcRect.Height) / 2f;
 
-            using (var pen = new Pen(Color.FromArgb(120, 160, 180), 2f))
+            using (var pen = new Pen(_tickColor, 2f))
             using (var sf = new StringFormat { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center })
             using (var font = new Font(FontFamily.GenericSansSerif, 9f))
             {
                 for (int i = 0; i <= majorTicks; i++)
                 {
                     float angle = (startAngle + sweepAngle * (i / (float)majorTicks)) * (float)(Math.PI / 180.0);
-                    var outer = new PointF(center.X + (float)(radius * Math.Cos(angle)), center.Y + (float)(radius * Math.Sin(angle)));
-                    var inner = new PointF(center.X + (float)((radius - 12) * Math.Cos(angle)), center.Y + (float)((radius - 12) * Math.Sin(angle)));
-                    g.DrawLine(pen, inner, outer);
+                    float cos = (float)Math.Cos(angle);
+                    float sin = (float)Math.Sin(angle);
 
-                    // label
-                    double value = _from + (_to - _from) * (i / (double)majorTicks);
-                    var labelPoint = new PointF(center.X + (float)((radius - 28) * Math.Cos(angle)), center.Y + (float)((radius - 28) * Math.Sin(angle)));
+                    g.DrawLine(pen,
+                        new PointF(cx + (radius - 12) * cos, cy + (radius - 12) * sin),
+                        new PointF(cx + radius * cos, cy + radius * sin));
+
+                    double value = _minValue + (_maxValue - _minValue) * (i / (double)majorTicks);
+                    var labelPoint = new PointF(cx + (radius - 28) * cos, cy + (radius - 28) * sin);
                     g.DrawString(((int)value).ToString(), font, Brushes.White, labelPoint, sf);
                 }
             }
         }
 
-        private void DrawNeedle(Graphics g, Rectangle arcRect, float angleDegrees)
+        private void DrawNeedle(Graphics g, float cx, float cy, float radius, float angleDegrees)
         {
-            var center = new PointF(ClientRectangle.Width / 2f, ClientRectangle.Height * 0.75f);
-            float radius = Math.Min(arcRect.Width, arcRect.Height) / 2f;
             float angle = angleDegrees * (float)(Math.PI / 180.0);
-            var tip = new PointF(center.X + (float)((radius - 28) * Math.Cos(angle)), center.Y + (float)((radius - 28) * Math.Sin(angle)));
+            var tip = new PointF(cx + (radius - 28) * (float)Math.Cos(angle), cy + (radius - 28) * (float)Math.Sin(angle));
 
-            using (var pen = new Pen(Color.LightGray, 4f) { EndCap = LineCap.Round })
-            {
-                g.DrawLine(pen, center, tip);
-            }
+            using (var pen = new Pen(_needleColor, 4f) { EndCap = LineCap.Round })
+                g.DrawLine(pen, new PointF(cx, cy), tip);
 
-            // hub
-            using (var brush = new SolidBrush(Color.FromArgb(220, 220, 220)))
-            {
-                g.FillEllipse(brush, center.X - 6, center.Y - 6, 12, 12);
-            }
+            using (var brush = new SolidBrush(_hubColor))
+                g.FillEllipse(brush, cx - 6, cy - 6, 12, 12);
         }
 
-        private void DrawCenterText(Graphics g)
+        private string FormatValueText()
         {
-            string valueText = ((int)_value).ToString();
-            string unit = "rpm";
-            using (var valueFont = new Font(FontFamily.GenericSansSerif, 28f, FontStyle.Bold))
-            using (var unitFont = new Font(FontFamily.GenericSansSerif, 10f))
-            using (var sf = new StringFormat { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center })
+            return $"{(int)_currentValue} {_unit}";
+        }
+
+        protected override void OnResize(EventArgs e)
+        {
+            base.OnResize(e);
+            if (_lblValue != null)
             {
-                var center = new PointF(ClientRectangle.Width / 2f, ClientRectangle.Height * 0.62f);
-                g.DrawString(valueText, valueFont, Brushes.AliceBlue, center, sf);
-                g.DrawString(unit, unitFont, Brushes.LightGray, new PointF(center.X, center.Y + 26), sf);
-                // setpoint / small label below
-                if (_showSetpoint)
-                {
-                    using (var spFont = new Font(FontFamily.GenericSansSerif, 9f))
-                    using (var spBrush = new SolidBrush(Color.FromArgb(160, 200, 230)))
-                    {
-                        var spText = $"Setpoint: {(int)_setpoint} rpm";
-                        g.DrawString(spText, spFont, spBrush, new PointF(center.X, center.Y + 46), sf);
-                    }
-                }
+                _lblValue.Location = new Point(
+                    (Width - _lblValue.Width) / 2,
+                    (int)(Height * 0.72f));
             }
+            Invalidate();
         }
 
         private void SimTick()
@@ -291,27 +258,13 @@ namespace TestGauge
             // animate value toward a random target to simulate RPM changes
             if (!_simulating) return;
             // if reached target or no target, choose a new one occasionally
-            if (Math.Abs(_simTarget - _value) < 1.0)
+            if (Math.Abs(_simTarget - _currentValue) < 1.0)
             {
-                _simTarget = _rnd.Next((int)_from, (int)_to + 1);
+                _simTarget = _rnd.Next((int)_minValue, (int)_maxValue + 1);
             }
-            var current = _value;
+            var current = _currentValue;
             var newValue = current + (_simTarget - current) * 0.25;
-            Value = newValue;
-            // optionally update setpoint as last value so visual matches
-            _setpoint = _value;
-        }
-
-        private void InitializeComponent()
-        {
-            this.SuspendLayout();
-            // 
-            // GaugeControl
-            // 
-            this.Name = "GaugeControl";
-            this.Size = new System.Drawing.Size(199, 146);
-            this.ResumeLayout(false);
-
+            CurrentValue = newValue;
         }
     }
 }

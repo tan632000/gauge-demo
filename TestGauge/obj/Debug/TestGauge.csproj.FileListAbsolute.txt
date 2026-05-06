@@ -79,6 +79,7 @@ C:\Users\tanhv\source\repos\gauge-demo\TestGauge\bin\Debug\System.Text.Json.dll
 C:\Users\tanhv\source\repos\gauge-demo\TestGauge\bin\Debug\System.Threading.Tasks.Extensions.dll
 C:\Users\tanhv\source\repos\gauge-demo\TestGauge\bin\Debug\System.ValueTuple.dll
 C:\Users\tanhv\source\repos\gauge-demo\TestGauge\bin\Debug\HarfBuzzSharp.pdb
+C:\Users\tanhv\source\repos\gauge-demo\TestGauge\bin\Debug\HarfBuzzSharp.xml
 C:\Users\tanhv\source\repos\gauge-demo\TestGauge\bin\Debug\LiveChartsCore.xml
 C:\Users\tanhv\source\repos\gauge-demo\TestGauge\bin\Debug\LiveChartsCore.SkiaSharpView.xml
 C:\Users\tanhv\source\repos\gauge-demo\TestGauge\bin\Debug\LiveChartsCore.SkiaSharpView.WinForms.xml
@@ -88,9 +89,13 @@ C:\Users\tanhv\source\repos\gauge-demo\TestGauge\bin\Debug\OpenTK.xml
 C:\Users\tanhv\source\repos\gauge-demo\TestGauge\bin\Debug\OpenTK.GLControl.pdb
 C:\Users\tanhv\source\repos\gauge-demo\TestGauge\bin\Debug\OpenTK.GLControl.xml
 C:\Users\tanhv\source\repos\gauge-demo\TestGauge\bin\Debug\SkiaSharp.pdb
+C:\Users\tanhv\source\repos\gauge-demo\TestGauge\bin\Debug\SkiaSharp.xml
 C:\Users\tanhv\source\repos\gauge-demo\TestGauge\bin\Debug\SkiaSharp.HarfBuzz.pdb
+C:\Users\tanhv\source\repos\gauge-demo\TestGauge\bin\Debug\SkiaSharp.HarfBuzz.xml
 C:\Users\tanhv\source\repos\gauge-demo\TestGauge\bin\Debug\SkiaSharp.Views.Desktop.Common.pdb
+C:\Users\tanhv\source\repos\gauge-demo\TestGauge\bin\Debug\SkiaSharp.Views.Desktop.Common.xml
 C:\Users\tanhv\source\repos\gauge-demo\TestGauge\bin\Debug\SkiaSharp.Views.WindowsForms.pdb
+C:\Users\tanhv\source\repos\gauge-demo\TestGauge\bin\Debug\SkiaSharp.Views.WindowsForms.xml
 C:\Users\tanhv\source\repos\gauge-demo\TestGauge\bin\Debug\System.Buffers.xml
 C:\Users\tanhv\source\repos\gauge-demo\TestGauge\bin\Debug\System.Memory.xml
 C:\Users\tanhv\source\repos\gauge-demo\TestGauge\bin\Debug\System.Numerics.Vectors.xml
@@ -100,12 +105,11 @@ C:\Users\tanhv\source\repos\gauge-demo\TestGauge\bin\Debug\System.Text.Json.xml
 C:\Users\tanhv\source\repos\gauge-demo\TestGauge\bin\Debug\System.Threading.Tasks.Extensions.xml
 C:\Users\tanhv\source\repos\gauge-demo\TestGauge\bin\Debug\System.ValueTuple.xml
 C:\Users\tanhv\source\repos\gauge-demo\TestGauge\obj\Debug\TestGauge.csproj.AssemblyReference.cache
+C:\Users\tanhv\source\repos\gauge-demo\TestGauge\obj\Debug\TestGauge.GaugeControl.resources
 C:\Users\tanhv\source\repos\gauge-demo\TestGauge\obj\Debug\TestGauge.Properties.Resources.resources
 C:\Users\tanhv\source\repos\gauge-demo\TestGauge\obj\Debug\TestGauge.csproj.GenerateResource.cache
 C:\Users\tanhv\source\repos\gauge-demo\TestGauge\obj\Debug\TestGauge.csproj.CoreCompileInputs.cache
-C:\Users\tanhv\source\repos\gauge-demo\TestGauge\obj\Debug\TestGauge.csproj.Up2Date
-C:\Users\tanhv\source\repos\gauge-demo\TestGauge\obj\Debug\TestGauge.exe
 C:\Users\tanhv\source\repos\gauge-demo\TestGauge\obj\Debug\TestGauge.pdb
 C:\Users\tanhv\source\repos\gauge-demo\TestGauge\obj\Debug\TestGauge.Form1.resources
-C:\Users\tanhv\source\repos\gauge-demo\TestGauge\obj\Debug\TestGauge.GaugeControl.resources
+C:\Users\tanhv\source\repos\gauge-demo\TestGauge\obj\Debug\TestGauge.csproj.Up2Date
 C:\Users\tanhv\source\repos\gauge-demo\TestGauge\obj\Debug\TestGauge.exe.config
