@@ -34,7 +34,7 @@ namespace TestGauge
         private const int BadgeVPadding       = 5;
 
         // ── Backing fields ──
-        private string _location   = "Location";
+        private string _title      = "Title";
         private DateTime _time     = DateTime.Now;
         private EventStatus _status = EventStatus.Run;
         private bool _hovered;
@@ -57,11 +57,11 @@ namespace TestGauge
         // ────────────────────────────────────────────
 
         [Category("Event")]
-        [Description("Location text, e.g. Pump P-201, Valve V-12.")]
-        public string Location
+        [Description("Title text, e.g. Pump P-201, Valve V-12.")]
+        public string Title
         {
-            get => _location;
-            set { _location = value; Invalidate(); }
+            get => _title;
+            set { _title = value; Invalidate(); }
         }
 
         [Category("Event")]
@@ -137,7 +137,7 @@ namespace TestGauge
         }
 
         [Category("Event.Appearance")]
-        [Description("Location text color. Null = default white.")]
+        [Description("Title text color. Null = default white.")]
         public Color? TextColor
         {
             get => _textColor;
@@ -270,13 +270,13 @@ namespace TestGauge
                 x += (int)sz.Width + 16;
             }
 
-            // Location
+            // Title
             using (var locFont = new Font("Segoe UI", 10f, FontStyle.Bold))
             using (var locBrush = new SolidBrush(ResolveText()))
             {
-                float tH = g.MeasureString(_location, locFont).Height;
+                float tH = g.MeasureString(_title, locFont).Height;
                 float y0 = (Height - tH) / 2;
-                g.DrawString(_location, locFont, locBrush, x, y0);
+                g.DrawString(_title, locFont, locBrush, x, y0);
             }
 
             // Status badge

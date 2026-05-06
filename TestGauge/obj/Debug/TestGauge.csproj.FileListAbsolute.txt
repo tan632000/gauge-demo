@@ -112,4 +112,3 @@ C:\Users\tanhv\source\repos\gauge-demo\TestGauge\obj\Debug\TestGauge.csproj.Core
 C:\Users\tanhv\source\repos\gauge-demo\TestGauge\obj\Debug\TestGauge.pdb
 C:\Users\tanhv\source\repos\gauge-demo\TestGauge\obj\Debug\TestGauge.Form1.resources
 C:\Users\tanhv\source\repos\gauge-demo\TestGauge\obj\Debug\TestGauge.csproj.Up2Date
-C:\Users\tanhv\source\repos\gauge-demo\TestGauge\obj\Debug\TestGauge.exe.config
